@@ -1,0 +1,25 @@
+# 开发环境的生产文件
+# 配置数据库的链接
+spring:
+  datasource:
+    ## 上线环境
+    url: jdbc:mysql://localhost/musicserver?characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+
+server:
+  port: 9090
+
+# 开启 Mybatis SQL 打印
+# 开启 MyBatis SQL 打印
+logging:
+  level:
+    com:
+      example:
+        demo: debug
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+    #做限制的参数配置
+

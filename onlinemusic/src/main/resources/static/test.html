@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<script src="js/jquery-3.1.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#submit").click(function(){
+
+            var username = $("#user").val();
+
+            var password = $("#password").val();
+
+
+            alert("username:"+username +" password: "+password);
+
+
+            console.log("用户名：",username);
+            console.log("密码",password);
+
+
+            $.ajax({
+                url:"/hhhh/test",//请求的路径
+
+                data:{"username":username,"password":password},//发送给服务器的数据
+
+                type:"POST",//请求方式
+
+                dataType:"json",//预期服务器返回的数据类型
+
+                success:function(data) {
+                    console.log("服务器返回的数据：",data);
+                    
+                    if(data.status == 0) {
+                        alert("登录成功！");
+                        //跳转到指定的页面了
+                        //window.location.href="list.html";
+                    }else{
+                        alert("登录失败，密码或者用户名错误！");
+                        $("#user").val("");
+                        $("#password").val("");
+                    }
+                }
+            });
+        });
+    });
+</script>
+</head>
+
+<body>
+    <div  >
+        <label for="user">用户名：</label>
+        <input type="text" name="username" id="user" placeholder="请输入用户名"/>
+      </div>
+      
+      <div >
+        <label for="password">密码：</label>
+        <input type="password" name="password"  id="password" placeholder="请输入密码"/>
+      </div>
+
+      <div >
+        <input id="submit"  type="button" value="登录" >
+      </div>
+</body>
+</html>

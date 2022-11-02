@@ -1,0 +1,17 @@
+# 当前运行的环境（配置文件）
+
+spring:
+  profiles:
+    active: dev #使用开发环境的配置文件
+  servlet:
+    multipart:
+      enabled: true
+      # 单个文件最大20MB
+      max-file-size: 15MB
+      # 单词请求的文件总数不能大于100MB
+      max-request-size: 100MB
+
+#配置 mybatis xml 保存路径
+mybatis:
+  mapper-locations: classpath:mybatis/**Mapper.xml
+

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.onlimemusic.mapper.LoveMusicMapper">
+
+
+    <select id="findLoveMusic" resultType="com.example.onlimemusic.model.Music">
+        select *
+        from lovemusic
+        where user_id = #{userid}
+          and music_id = #{musicid};
+    </select>
+
+
+    <insert id="insertLoveMusic">
+        insert into lovemusic(user_id, music_id)
+        values (#{userid}, #{musicid})
+    </insert>
+
+
+    <delete id="deleteLoveMusic" parameterType="java.lang.Integer">
+        delete
+        from lovemusic
+        where user_id = #{userid}
+          and music_id = #{musicid}
+    </delete>
+
+
+    <select id="findLoveMusicByUserid" resultType="com.example.onlimemusic.model.Music">
+        select m.*
+        from lovemusic lm,
+             music m
+        where m.id = lm.music_id
+          and lm.user_id = #{userid}
+    </select>
+
+    <select id="findLoveMusicBykeyAndUID" resultType="com.example.onlimemusic.model.Music">
+        select m.*
+        from lovemusic lm,
+             music m
+        where m.id = lm.music_id
+          and lm.user_id = #{userid}
+          and title like concat('%', #{musicname}, '%')
+    </select>
+
+    <delete id="deleteLoveMusicById" parameterType="java.lang.Integer">
+        delete
+        from lovemusic
+        where music_id = #{musicid}
+    </delete>
+
+</mapper>
